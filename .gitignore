@@ -1,0 +1,25 @@
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# compiled output
+/dist
+/build
+/tmp
+/out-tsc
+
+# files
+/uploads
+
+# environment variables
+.env
+.env.dev
+/src/enviroments/Environment.json
