@@ -1,7 +1,7 @@
 import Telegraf, { ContextMessageUpdate } from 'telegraf'
 
-import { Messages } from '../config/messages/messages'
-import { videos } from '../config/videos/videos'
+import { messages } from '../config/messages/messages'
+import YouTubeService from '../services/YouTube.service'
 
 class Commands {
   private bot: Telegraf<ContextMessageUpdate>
@@ -10,7 +10,7 @@ class Commands {
     this.bot = bot
 
     this.start()
-    this.QQIssoBaianinho()
+    this.VemBaianinho()
   }
 
   private start(): void {
@@ -19,16 +19,17 @@ class Commands {
         const { from } = ctx.message
 
         if (from?.first_name)
-          ctx.reply(Messages.start(from.first_name, from.id))
+          ctx.reply(messages.start)
       }
     })
   }
 
-  private QQIssoBaianinho(): void {
-    this.bot.command('QQIssoBaianinho', (ctx: ContextMessageUpdate) => {
+  private VemBaianinho(): void {
+    this.bot.command('VemBaianinho', async (ctx: ContextMessageUpdate) => {
+      const videos =  (await YouTubeService.getChannelVideos()).items
       const selectedVideo = videos[Math.floor(Math.random() * videos.length)]
 
-      ctx.reply(Messages.sendVideo(selectedVideo))
+      ctx.reply(messages.sendVideo(selectedVideo.id.videoId))
     })
   }
 }

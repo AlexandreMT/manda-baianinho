@@ -1,9 +1,9 @@
-export const Messages = {
-  start: (username: string, from: number) => `
+export const messages = {
+  start: `
 Olá!
 
-Para receber os maiores lances do Mestre da Sinuca,
-envie-me o comando /QQIssoBaianinho.`,
+Para receber os maiores vídeos do Mestre da Sinuca,
+envie-me o comando /VemBaianinho.`,
 
-  sendVideo: (videoUrl: string) => `${videoUrl}`
+  sendVideo: (videoUrl: string) => `https://www.youtube.com/watch?v=${videoUrl}`
 }
