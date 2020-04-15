@@ -7,8 +7,9 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "ts-node src/app.ts",
-    "build": "tsc"
+    "dev": "ts-node src/app.ts",
+    "build": "tsc",
+    "prod": "node build/server.js"
   },
   "devDependencies": {
     "@types/node": "^13.11.1",
