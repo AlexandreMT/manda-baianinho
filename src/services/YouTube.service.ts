@@ -1,10 +1,10 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
-import { youtubeApiToken } from '../config/environments/env'
+import { YT_API_TOKEN } from '../config/environments/env'
 
 class YouTubeService {
   private api: AxiosInstance
   private params = {
-    key: youtubeApiToken,
+    key: YT_API_TOKEN,
     maxResults: 50,
     part: 'snippet',
     channelId: 'UCyTqiBJSKWYNSMVcbm__OVw'
@@ -21,7 +21,10 @@ class YouTubeService {
   }
 
   public async getChannelVideos(): Promise<any> {
-    return (await this.get('/search')).data
+    const videos =  (await this.get('/search')).data.items
+    const selectedVideo = videos[Math.floor(Math.random() * videos.length)]
+
+    return selectedVideo
   }
 }
 

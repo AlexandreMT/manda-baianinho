@@ -14,22 +14,13 @@ class Commands {
   }
 
   private start(): void {
-    this.bot.start((ctx: ContextMessageUpdate) => {
-      if (ctx?.message) {
-        const { from } = ctx.message
-
-        if (from?.first_name)
-          ctx.reply(messages.start)
-      }
-    })
+    this.bot.start((ctx: ContextMessageUpdate) => ctx.reply(messages.start))
   }
 
   private VemBaianinho(): void {
     this.bot.command('VemBaianinho', async (ctx: ContextMessageUpdate) => {
-      const videos =  (await YouTubeService.getChannelVideos()).items
-      const selectedVideo = videos[Math.floor(Math.random() * videos.length)]
-
-      ctx.reply(messages.sendVideo(selectedVideo.id.videoId))
+      const selectedVideo = await YouTubeService.getChannelVideos()
+      ctx.reply(messages.sendVideo(selectedVideo.id.videoId), { reply_to_message_id: ctx.message?.message_id })
     })
   }
 }

@@ -1,14 +1,14 @@
 import Telegraf, { ContextMessageUpdate } from 'telegraf'
-import { BotToken } from './config/environments/env'
+import { BOT_TOKEN } from './config/environments/env'
 import Commands from './commands/commands'
 
 class App {
   public bot!: Telegraf<ContextMessageUpdate>
 
   constructor() {
-    if (!BotToken) return
+    if (!BOT_TOKEN) return
 
-    this.bot = new Telegraf(BotToken)
+    this.bot = new Telegraf(BOT_TOKEN)
     this.BotListener()
     this.startCommands()
   }
